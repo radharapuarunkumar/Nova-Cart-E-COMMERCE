@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaCart — Shop Beyond Ordinary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">⚡ Flash Drop: extra 10% off on selected products <span id="countdown">00:00:00</span></div>
+
+  <header class="navbar">
+    <a class="logo" href="#"><span>✦</span> NovaCart</a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search products, categories..." autocomplete="off">
+      <button id="searchBtn">⌕</button>
+    </div>
+    <div class="nav-actions">
+      <button id="themeBtn" class="icon-btn" title="Toggle theme">☼</button>
+      <button id="ordersBtn" class="icon-btn" title="View orders">▣</button>
+      <button id="cartBtn" class="cart-btn">Cart <b id="cartCount">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">THE NEW DIGITAL MARKETPLACE</span>
+        <h1>Good products.<br><em>Better discoveries.</em></h1>
+        <p>Curated tech, fashion and lifestyle essentials with a shopping experience that feels alive.</p>
+        <div class="hero-buttons">
+          <button class="primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore collection →</button>
+          <button class="ghost" onclick="showToast('Free delivery unlocked on orders above ₹999')">Why NovaCart?</button>
+        </div>
+        <div class="trust-row"><span>✓ Secure checkout</span><span>✓ 7-day returns</span><span>✓ Fast delivery</span></div>
+      </div>
+      <div class="hero-art">
+        <div class="orb orb1"></div><div class="orb orb2"></div>
+        <div class="floating-card card-a">✦<small>Curated pick</small><b>98% happy shoppers</b></div>
+        <div class="floating-card card-b">🚚<small>Fast dispatch</small><b>Ships in 24h</b></div>
+        <div class="hero-product"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1000&q=85" alt="Featured headphones"></div>
+      </div>
+    </section>
+
+    <section class="categories" id="categories">
+      <button class="category active" data-category="All">All <span>06</span></button>
+      <button class="category" data-category="Audio">Audio</button>
+      <button class="category" data-category="Wearables">Wearables</button>
+      <button class="category" data-category="Fashion">Fashion</button>
+      <button class="category" data-category="Home">Home</button>
+      <button class="category" data-category="Accessories">Accessories</button>
+      <button class="category" data-category="Electronics">Electronics</button>
+    </section>
+
+    <section id="shop" class="shop-section">
+      <div class="section-head">
+        <div><span class="eyebrow">HANDPICKED FOR YOU</span><h2>Trending right now</h2></div>
+        <span id="resultInfo"></span>
+      </div>
+      <div id="products" class="product-grid"></div>
+    </section>
+
+    <section class="experience">
+      <div><span class="eyebrow">BUILT FOR REAL LIFE</span><h2>Small details.<br>Big difference.</h2></div>
+      <div class="feature"><strong>01</strong><h3>Live cart</h3><p>Your cart remembers your choices and updates instantly.</p></div>
+      <div class="feature"><strong>02</strong><h3>Smart discovery</h3><p>Search and category filters update the collection without reloading.</p></div>
+      <div class="feature"><strong>03</strong><h3>Order tracking</h3><p>Place an order and check its current status from the same browser.</p></div>
+    </section>
+  </main>
+
+  <footer><span>✦ NovaCart</span><span>Made for a modern shopping experience.</span></footer>
+
+  <div id="drawerOverlay" class="overlay hidden"></div>
+  <aside id="cartDrawer" class="drawer">
+    <div class="drawer-head"><h2>Your cart</h2><button id="closeCart">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-bottom"><div><span>Total</span><strong id="cartTotal">₹0</strong></div><button id="checkoutBtn" class="primary full">Checkout →</button></div>
+  </aside>
+
+  <div id="checkoutModal" class="modal hidden">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <span class="eyebrow">FINAL STEP</span><h2>Complete your order</h2>
+      <form id="checkoutForm">
+        <input name="name" placeholder="Full name" required>
+        <input name="email" type="email" placeholder="Email address" required>
+        <input name="phone" placeholder="Phone number">
+        <textarea name="address" placeholder="Delivery address" required></textarea>
+        <div class="payment-note">🔒 Demo checkout — no real payment is processed.</div>
+        <button class="primary full" type="submit">Place order · <span id="formTotal">₹0</span></button>
+      </form>
+    </div>
+  </div>
+
+  <div id="ordersModal" class="modal hidden">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeOrders()">×</button>
+      <span class="eyebrow">ORDER HISTORY</span><h2>Your orders</h2>
+      <input id="orderEmail" type="email" placeholder="Enter the email used for your order">
+      <button class="primary full" onclick="loadOrders()">Find orders</button>
+      <div id="ordersList"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
